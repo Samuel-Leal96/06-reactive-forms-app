@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col">
 
-    <form autocomplete="off" [formGroup]="myForm">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
       <!--* Campo de producto -->
       <div class="mb-3 row">
@@ -37,9 +37,11 @@
             placeholder="Precio del producto"
             formControlName="price"
             >
-          <span class="form-text text-danger">
-            El precio debe de ser 0 o mayor
-          </span>
+          @if ( isValidField('price')) {
+            <span class="form-text text-danger">
+              {{ getFieldError("price") }}
+            </span>
+          }
         </div>
       </div>
 
@@ -54,9 +56,11 @@
             formControlName="inStorage"
             >
 
-          <span class="form-text text-danger">
-            Las existencias deben de ser 0 o mayor
-          </span>
+          @if ( isValidField('inStorage')) {
+            <span class="form-text text-danger">
+              {{ getFieldError("inStorage") }}
+            </span>
+          }
         </div>
       </div>
 
